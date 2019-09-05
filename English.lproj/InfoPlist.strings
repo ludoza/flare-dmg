@@ -1,0 +1,6 @@
+/* Localized versions of Info.plist keys */
+
+CFBundleName = "Flare";
+CFBundleShortVersionString = "Flare version 1.0";
+CFBundleGetInfoString = "Flare version 1.0, Copyright 2018 Clint Bellanger.";
+NSHumanReadableCopyright = "Copyright 2018 Clint Bellanger.";

@@ -1,11 +1,20 @@
 #!/bin/sh
 
 FLARE_PACKAGE=../flare-engine/flare_osx.tar.gz
+FLARE_DMG=flare.dmg
 RESOURCES_DIR=flare_dmg/Flare.app/Contents/Resources
+
+if [ "$1" != "" ]; then
+ FLARE_PACKAGE=$1
+fi
+
+if [ "$2" != "" ]; then
+ FLARE_DMG=$2
+fi
 
 find . -name '.DS_Store' -type f -delete 
 
-rm -rf flare.dmg
+rm -rf ${FLARE_DMG}
 rm -rf ${RESOURCES_DIR}
 
 mkdir -p ${RESOURCES_DIR}
@@ -23,5 +32,5 @@ create-dmg \
 --icon Flare.app 100 125 \
 --hide-extension Flare.app \
 --eula flare_dmg/COPYING \
-flare.dmg \
+${FLARE_DMG} \
 flare_dmg/

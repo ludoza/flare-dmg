@@ -12,21 +12,21 @@ if [ "$2" != "" ]; then
  FLARE_DMG=$2
 fi
 
-find . -name '.DS_Store' -type f -delete 
+#find . -name '.DS_Store' -type f -delete
 
 rm -rf ${FLARE_DMG}
 rm -rf ${RESOURCES_DIR}
 
 mkdir -p ${RESOURCES_DIR}
 tar -C ${RESOURCES_DIR} -zxf ${FLARE_PACKAGE}
-cp -r English.lproj ${RESOURCES_DIR}
+#cp -r English.lproj ${RESOURCES_DIR}
 
 cp English.lproj/flare.icns ${RESOURCES_DIR}
 
 # brew install create-dmg
 create-dmg \
 --volname "Flare" \
---volicon "flare_dmg/Flare.app/Contents/Resources/English.lproj/flare.icns" \
+--volicon "English.lproj/flare.icns" \
 --background "flare_dmg_background.png" \
 --text-size 16 \
 --window-size 642 320 \

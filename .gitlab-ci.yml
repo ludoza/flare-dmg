@@ -2,6 +2,10 @@ stages:
   - compile
   - create
 
+cache:
+  paths:
+    - flare-engine
+
 compile_macos_engine:
   stage: compile
   tags:
@@ -45,9 +49,9 @@ compile_macos_game:
     - echo "remember to 'brew install cmake libvorbis sdl2 sdl2_image sdl2_mixer sdl2_ttf'"
   script:
     - echo git clone https://github.com/ludoza/flare-engine.git # --depth 1 # TODO use flareteam
-    - echo git clone https://github.com/flareteam/flare-game.git --depth 1
+    - git clone https://github.com/flareteam/flare-game.git --depth 1
     - cd flare-engine
-    - echo git checkout macos-patch # TODO remove after pull request merged
+    - git checkout macos-patch # TODO remove after pull request merged
     - echo cmake .
     - echo make
     - ./package_osx.sh flare homebrew ../flare-game

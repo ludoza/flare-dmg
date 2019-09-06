@@ -13,6 +13,7 @@ compile_macos_engine:
   before_script:
     - echo "remember to 'brew install cmake libvorbis sdl2 sdl2_image sdl2_mixer sdl2_ttf'"
   script:
+    - rm -rf flare-engine || true # remove previous cache
     - git clone https://github.com/ludoza/flare-engine.git # --depth 1 # TODO use flareteam
     - echo git clone https://github.com/flareteam/flare-game.git --depth 1
     - cd flare-engine

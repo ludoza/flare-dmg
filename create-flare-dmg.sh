@@ -25,7 +25,7 @@ cp -r English.lproj ${RESOURCES_DIR}
 create-dmg \
 --volname "Flare" \
 --volicon "flare_dmg/Flare.app/Contents/Resources/English.lproj/flare.icns" \
---background "../flare-engine/distribution/macos/flare_dmg_background.png" \
+--background "flare_dmg_background.png" \
 --text-size 16 \
 --window-size 642 320 \
 --app-drop-link 300 125 \

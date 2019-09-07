@@ -1,7 +1,7 @@
 volume_name = "Flare"
 files = [ 'flare_dmg/Flare.app' ]
 symlinks = { 'Applications': '/Applications' }
-badge_icon = "English.lproj/flare.icns"
+badge_icon = "flare.icns"
 background = "flare_dmg_background.png"
 window_rect = ((100, 100), (640, 280))
 icon_locations = {

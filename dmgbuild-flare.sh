@@ -21,6 +21,6 @@ mkdir -p ${RESOURCES_DIR}
 tar -C ${RESOURCES_DIR} -zxf ${FLARE_PACKAGE}
 #cp -r English.lproj ${RESOURCES_DIR}
 
-cp English.lproj/flare.icns ${RESOURCES_DIR}
+cp flare.icns ${RESOURCES_DIR}
 
 dmgbuild -s flare_dmg_settings.py Flare ${FLARE_DMG}

@@ -5,6 +5,8 @@ stages:
 cache:
   paths:
     - flare-engine
+    - venv4dmgbuild
+    - dmgbuild
 
 compile_macos_engine:
   stage: compile
@@ -28,14 +30,22 @@ compile_macos_engine:
       - flare-engine/flare_osx_engine.tar.gz
       - flare-engine/flare_osx_engine.tar.gz.sha256.txt
 
-ceate_macos_engine_dmg:
+create_macos_engine_dmg:
   stage: create
   tags:
     - macos
   before_script:
     - echo ""
   script:
-    - ./create-flare-dmg.sh flare-engine/flare_osx_engine.tar.gz flare_engine.dmg
+    - rm -rf venv4dmgbuild || true # remove previous cache
+    - rm -rf dmgbuild || true # remove previous cache
+    - python3 -m venv venv4dmgbuild # will be cached for game
+    - source venv4dmgbuild/bin/activate
+    - git clone https://github.com/ludoza/dmgbuild.git # TODO install from pip, if package updated
+    - cd dmgbuild
+    - pip install -e .
+    - cd ..
+    - ./dmgbuild-flare.sh flare-engine/flare_osx_engine.tar.gz flare_engine.dmg
     - shasum -a 256 flare_engine.dmg > flare_engine.dmg.sha256.txt
   artifacts:
     paths:
@@ -63,14 +73,15 @@ compile_macos_game:
       - flare-engine/flare_osx_game.tar.gz
       - flare-engine/flare_osx_game.tar.gz.sha256.txt
 
-ceate_macos_game_dmg:
+create_macos_game_dmg:
   stage: create
   tags:
     - macos
   before_script:
     - echo ""
   script:
-    - ./create-flare-dmg.sh flare-engine/flare_osx_game.tar.gz flare_game.dmg
+    - source venv4dmgbuild/bin/activate
+    - ./dmgbuild-flare.sh flare-engine/flare_osx_game.tar.gz flare_game.dmg
     - shasum -a 256 flare_game.dmg > flare_game.dmg.sha256.txt
   artifacts:
     paths:

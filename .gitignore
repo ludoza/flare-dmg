@@ -2,3 +2,5 @@
 flare.dmg
 flare_dmg/Flare.app/Contents/Resources
 *.dmg
+venv4dmgbuild
+dmgbuild

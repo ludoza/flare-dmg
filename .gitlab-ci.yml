@@ -19,12 +19,12 @@ compile_macos_engine:
     - git clone https://github.com/flareteam/flare-engine.git --depth 1
     - echo git clone https://github.com/flareteam/flare-game.git --depth 1
     - cd flare-engine
-    - git checkout macos-patch # TODO remove after pull request merged
     - cmake .
     - make
     - ./package_osx.sh flare homebrew
     - mv flare_osx.tar.gz flare_osx_engine.tar.gz
     - shasum -a 256 flare_osx_engine.tar.gz > flare_osx_engine.tar.gz.sha256.txt
+    - cat flare_osx_engine.tar.gz.sha256.txt
   artifacts:
     paths:
       - flare-engine/flare_osx_engine.tar.gz
@@ -47,6 +47,7 @@ create_macos_engine_dmg:
     - cd ..
     - ./dmgbuild-flare.sh flare-engine/flare_osx_engine.tar.gz flare_engine.dmg
     - shasum -a 256 flare_engine.dmg > flare_engine.dmg.sha256.txt
+    - cat flare_engine.dmg.sha256.txt
   artifacts:
     paths:
       - flare_engine.dmg
@@ -59,15 +60,14 @@ compile_macos_game:
   before_script:
     - echo "remember to 'brew install cmake libvorbis sdl2 sdl2_image sdl2_mixer sdl2_ttf'"
   script:
-    - echo git clone https://github.com/ludoza/flare-engine.git # --depth 1 # TODO use flareteam
     - git clone https://github.com/flareteam/flare-game.git --depth 1
     - cd flare-engine
-    - git checkout macos-patch # TODO remove after pull request merged
     - echo cmake .
     - echo make
     - ./package_osx.sh flare homebrew ../flare-game
     - mv flare_osx.tar.gz flare_osx_game.tar.gz
     - shasum -a 256 flare_osx_game.tar.gz > flare_osx_game.tar.gz.sha256.txt
+    - cat flare_osx_game.tar.gz.sha256.txt
   artifacts:
     paths:
       - flare-engine/flare_osx_game.tar.gz
@@ -83,6 +83,7 @@ create_macos_game_dmg:
     - source venv4dmgbuild/bin/activate
     - ./dmgbuild-flare.sh flare-engine/flare_osx_game.tar.gz flare_game.dmg
     - shasum -a 256 flare_game.dmg > flare_game.dmg.sha256.txt
+    - cat flare_game.dmg.sha256.txt
   artifacts:
     paths:
       - flare_game.dmg
